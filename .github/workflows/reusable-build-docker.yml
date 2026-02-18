@@ -55,6 +55,25 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+      - name: Build and push (develop)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: docker/Dockerfile.dev
+          push: true
+          build-args: |
+            VCPKG_FEED_URL=https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+            VCPKG_FEED_USERNAME=${{ github.repository_owner }}
+            VCPKG_BINARY_SOURCES=clear;nuget,https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json,read;nugettimeout,1200
+          secrets: |
+            github_token=${{ secrets.VCPKG_PACKAGES_TOKEN || github.token }}
+          tags: |
+            ghcr.io/${{ github.repository }}:dev
+            ghcr.io/${{ github.repository }}:dev-${{ steps.gitversion.outputs.semVer }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
       - name: Build and export (PR)
         if: github.event_name != 'push' || github.ref != 'refs/heads/main'
         uses: docker/build-push-action@v5
