@@ -50,8 +50,8 @@ jobs:
           secrets: |
             github_token=${{ secrets.VCPKG_PACKAGES_TOKEN || github.token }}
           tags: |
-            ghcr.io/${{ github.repository }}:latest
-            ghcr.io/${{ github.repository }}:${{ steps.gitversion.outputs.semVer }}
+            ghcr.io/thoriaot/canary:latest
+            ghcr.io/thoriaot/canary:${{ steps.gitversion.outputs.semVer }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -69,8 +69,8 @@ jobs:
           secrets: |
             github_token=${{ secrets.VCPKG_PACKAGES_TOKEN || github.token }}
           tags: |
-            ghcr.io/${{ github.repository }}:dev
-            ghcr.io/${{ github.repository }}:dev-${{ steps.gitversion.outputs.semVer }}
+            ghcr.io/thoriaot/canary:dev
+            ghcr.io/thoriaot/canary:dev-${{ steps.gitversion.outputs.semVer }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
