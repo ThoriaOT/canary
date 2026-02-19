@@ -14,8 +14,8 @@ on:
       - ".github/workflows/**"
   push:
     branches:
-      - main
-      - develop
+      # - main
+      # - develop
     paths:
       - "src/**"
       - "tests/**"
