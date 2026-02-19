@@ -14,8 +14,8 @@ on:
       - ".github/workflows/**"
   push:
     branches:
-      # - main
-      # - develop
+      - main
+      - develop
     paths:
       - "src/**"
       - "tests/**"
@@ -49,6 +49,7 @@ jobs:
     secrets: inherit
 
   # --- Heavy Builds ---
+  
   build-linux:
     name: Build - Linux
     needs: [checks, tests-lua]
