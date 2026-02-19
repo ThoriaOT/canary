@@ -97,3 +97,4 @@ jobs:
         with:
           name: docker-canary
           path: artifacts/docker-rootfs/bin/canary
+
